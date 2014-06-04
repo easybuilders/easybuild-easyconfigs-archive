@@ -1,6 +1,6 @@
 name = "GCC"
-version = '4.8.1'
-versionsuffix = "-CLooG"
+version = '4.8.3'
+versionsuffix = "-CLooG-multilib"
 
 homepage = 'http://gcc.gnu.org/'
 description = """The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Java, and Ada,
@@ -19,10 +19,10 @@ source_urls = [
 ]
 sources = [
     SOURCELOWER_TAR_GZ,
-    'gmp-5.1.2.tar.bz2',
+    'gmp-5.1.3.tar.bz2',
     'mpfr-3.1.2.tar.gz',
     'mpc-1.0.1.tar.gz',
-    'cloog-0.18.0.tar.gz',
+    'cloog-0.18.1.tar.gz',
     'isl-0.11.1.tar.bz2',
 ]
 
@@ -31,6 +31,8 @@ languages = ['c', 'c++', 'fortran', 'lto']
 withcloog = True
 withisl = True
 clooguseisl = True
+
+multilib = True
 
 # building GCC sometimes fails if make parallelism is too high, so let's limit it
 maxparallel = 4
