@@ -1,0 +1,42 @@
+easyblock = 'PythonPackage'
+
+name = 'hanythingondemand'
+version = '3.0.0-beta'
+versionsuffix = '-cli'
+
+homepage = 'https://github.com/hpcugent/hanythingondemand'
+description = """HanythingOnDemand (HOD) is a system for provisioning virtual Hadoop clusters over a large physical cluster.
+It uses the Torque resource manager to do node allocation."""
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+source_urls = [
+    'https://github.com/hpcugent/hanythingondemand/archive/'
+]
+sources = ['7730ed5.tar.gz']
+
+# minimal version for interactive use: just uses system Python (netaddr/netifaces/mpi4py not required)
+dependencies = [
+    ('pbs_python', '4.6.0'),
+    ('vsc-base', '2.4.2'),
+]
+
+use_easy_install = True
+zipped_egg = True
+
+# use 'hod' rather than 'hanythingondemand' in module name
+modaltsoftname = 'hod'
+
+options = {'modulename': 'hod'}
+
+modextravars = {
+    'HOD_BATCH_HOD_MODULE': 'hanythingondemand/3.0.0-beta-intel-2015b-Python-2.7.10',
+    'HOD_CREATE_HOD_MODULE': 'hanythingondemand/3.0.0-beta-intel-2015b-Python-2.7.10',
+    # site-specific, specify location on shared 'scratch' filesystem for HOD working directories
+    #'HOD_BATCH_WORKDIR': '\$VSC_SCRATCH/hod',
+    #'HOD_CREATE_WORKDIR': '\$VSC_SCRATCH/hod',
+}
+
+sanity_check_commands = [('hod', '--help'), ('hod', 'dists')]
+
+moduleclass = 'tools'
