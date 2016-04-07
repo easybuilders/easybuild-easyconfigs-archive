@@ -6,7 +6,7 @@ version = '7.0.28'
 homepage = "http://www.freedesktop.org/wiki/Software/xlibs"
 description = "X protocol and ancillary headers"
 
-toolchain = {'name': 'gimkl', 'version': '2.11.5'}
+toolchain = {'name': 'foss', 'version': '2016a'}
 
 sources = [SOURCE_TAR_GZ]
 source_urls = [XORG_PROTO_SOURCE]
