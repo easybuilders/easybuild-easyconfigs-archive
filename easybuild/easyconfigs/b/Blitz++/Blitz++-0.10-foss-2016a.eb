@@ -10,16 +10,11 @@ description = """Blitz++ is a (LGPLv3+) licensed meta-template library for array
 toolchain = {'name': 'foss', 'version': '2016a'}
 
 sources = ['blitz-%(version)s.tar.gz']
-source_urls = ['https://sourceforge.net/projects/blitz/files/blitz/%(name)s %(version)s',
-               'download']
+source_urls = [('https://sourceforge.net/projects/blitz/files/blitz/%(name)s %(version)s', 'download')]
 
 sanity_check_paths = {
     'files': ['lib/libblitz.a'],
-    'dirs': ['include/blitz/array',
-             'include/blitz/gnu',
-             'include/blitz/meta',
-             'include/random',
-             'lib/pkgconfig'],
+    'dirs': ['include/blitz/array', 'include/blitz/gnu', 'include/blitz/meta', 'include/random', 'lib/pkgconfig'],
 }
 
 moduleclass = 'lib'
