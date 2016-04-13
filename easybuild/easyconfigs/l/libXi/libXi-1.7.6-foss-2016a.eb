@@ -6,7 +6,7 @@ version = '1.7.6'
 homepage = "http://www.freedesktop.org/wiki/Software/xlibs"
 description = """LibXi provides an X Window System client interface to the XINPUT extension to the X protocol."""
 
-toolchain = {'name': 'intel', 'version': '2016a'}
+toolchain = {'name': 'foss', 'version': '2016a'}
 
 sources = [SOURCE_TAR_GZ]
 source_urls = [XORG_LIB_SOURCE]
