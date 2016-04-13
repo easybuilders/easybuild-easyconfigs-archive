@@ -10,15 +10,13 @@ description = """GObject introspection is a middleware layer between C libraries
  native C library. Then at runtime, language bindings can read this
  metadata and automatically provide bindings to call into the C library."""
 
-toolchain = {'name': 'intel', 'version': '2016a'}
+toolchain = {'name': 'foss', 'version': '2016a'}
 
 source_urls = [FTPGNOME_SOURCE]
 sources = [SOURCELOWER_TAR_XZ]
 
-pyver = '2.7.11'
-
 dependencies = [
-    ('Python', pyver),
+    ('Python', '2.7.11'),
     ('GLib', '2.47.5'),
     ('libffi', '3.2.1'),
 ]
