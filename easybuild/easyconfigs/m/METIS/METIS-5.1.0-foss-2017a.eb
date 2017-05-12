@@ -6,7 +6,7 @@ description = """METIS is a set of serial programs for partitioning graphs, part
  and producing fill reducing orderings for sparse matrices. The algorithms implemented in METIS are based on the
  multilevel recursive-bisection, multilevel k-way, and multi-constraint partitioning schemes."""
 
-toolchain = {'name': 'foss', 'version': '2016a'}
+toolchain = {'name': 'foss', 'version': '2017a'}
 toolchainopts = {'optarch': True, 'pic': True}
 
 sources = [SOURCELOWER_TAR_GZ]
@@ -15,11 +15,12 @@ source_urls = [
     'http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/OLD',
 ]
 
-# We use 32bit for indices and 64bit for content
+#We use 32bit for indices and 64bit for content
 patches = ['METIS-5.1.0-use-doubles.patch']
 
-builddependencies = [('CMake', '3.4.3')]
+builddependencies = [('CMake', '3.8.0')]
 
 configopts = ['', 'shared=1']
 
 moduleclass = 'math'
+
