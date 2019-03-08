@@ -7,7 +7,7 @@ rubyver = '2.5.1'
 versionsuffix = '-Ruby-%s' % rubyver
 
 homepage = 'https://github.com/ruby/tk'
-description = "Ruby/Tk"
+description = "Ruby Tk interface module using tcltklib"
 
 toolchain = {'name': 'intel', 'version': '2018a'}
 

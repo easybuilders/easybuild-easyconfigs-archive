@@ -23,12 +23,13 @@ dependencies = [('Ruby', rubyver)]
 skipsteps = ['configure', 'build']
 
 preinstallopts = 'GEM_HOME=%(installdir)s '
-preinstallopts += 'gem install --bindir %(installdir)s/bin --local fruit_processor_gem/pkg/fruit_processor-3.4.3.gem ||'
+preinstallopts += 'gem install --bindir %(installdir)s/bin --local '
+preinstallopts += '%(namelower)s_gem/pkg/%(namelower)s-%(version)s.gem ||'
 
 modextrapaths = {'GEM_PATH': ''}
 
 sanity_check_paths = {
-    'files': ['gems/fruit_processor-3.4.3/lib/%(namelower)s.rb'],
+    'files': ['gems/%(namelower)s-%(version)s/lib/%(namelower)s.rb'],
     'dirs': ['gems/%(namelower)s-%(version)s/lib'],
 }
 
