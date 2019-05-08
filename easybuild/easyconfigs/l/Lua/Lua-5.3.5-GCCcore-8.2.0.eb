@@ -25,11 +25,14 @@ dependencies = [
     ('libreadline', '8.0'),
 ]
 
-buildopts = 'linux'
+prebuildopts = "sed -i '/#define LUA_ROOT/s:/usr/local/:%(installdir)s/:' src/luaconf.h &&"
+buildopts = 'MYCFLAGS="-DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1" linux'
 
-installopts = "linux INSTALL_TOP=%(installdir)s"
+installopts = "linux INSTALL_TOP=%(installdir)s INSTALL_DATA='cp -d' "
 
 skipsteps = ['configure']
+
+runtest = 'test'
 
 sanity_check_paths = {
     'files': ['bin/%(namelower)s'],
