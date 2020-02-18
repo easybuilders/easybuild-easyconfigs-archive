@@ -10,7 +10,7 @@
 easyblock = 'PythonBundle'
 
 name = 'cutadapt'
-version = '2.7'
+version = '2.8'
 versionsuffix = '-Python-%(pyver)s'
 
 homepage = 'https://opensource.scilifelab.se/projects/cutadapt/'
@@ -36,7 +36,7 @@ exts_list = [
         'checksums': ['371a461bac0e821ff52f6235f0de4533ac73b0e990b470e9625486f2e6df2cd7'],
     }),
     (name, version, {
-        'checksums': ['070dec8d94b8bda72906c614b9e71bd61254a67a176dd17e5b57671edd567983'],
+        'checksums': ['31c4ffffa000b854ea0dba6ec502332fe484ef1a06d33dcc99d24d196c1afd73'],
     }),
 ]
 
@@ -44,10 +44,5 @@ sanity_check_paths = {
     'files': ['bin/cutadapt'],
     'dirs': ['lib/python%(pyshortver)s/site-packages'],
 }
-
-sanity_check_commands = [
-    "cutadapt --help",
-    "python -c 'import cutadapt.utils'",  # requires xopen
-]
 
 moduleclass = 'bio'
