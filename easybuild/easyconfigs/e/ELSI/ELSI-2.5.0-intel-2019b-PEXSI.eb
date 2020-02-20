@@ -1,5 +1,6 @@
 name = 'ELSI'
 version = '2.5.0'
+versionsuffix = '-PEXSI'
 
 homepage = 'https://wordpress.elsi-interchange.org/'
 description = """ELSI provides and enhances scalable, open-source software library solutions for
@@ -8,8 +9,8 @@ description = """ELSI provides and enhances scalable, open-source software libra
  The ELSI infrastructure should also be useful for other challenging eigenvalue problems.
 """
 
-toolchain = {'name': 'foss', 'version': '2019b'}
-toolchainopts = {'usempi': True}
+toolchain = {'name': 'intel', 'version': '2019b'}
+toolchainopts = {'usempi': True, 'pic': True}
 
 source_urls = ['http://wordpress.elsi-interchange.org/wp-content/uploads/2020/02/']
 sources = [SOURCELOWER_TAR_GZ]
@@ -22,8 +23,12 @@ builddependencies = [
 ]
 
 dependencies = [
-    # ('ELPA', '2019.11.001'),  # tests fail when using external ELPA with foss toolchain
+    ('ELPA', '2019.11.001'),
+    # SLEPc and internal PEXSI can't coexist due to conflicting dependencies
+    # ('SLEPc', '3.12.2'),
 ]
+
+build_internal_pexsi = True
 
 runtest = True
 
