@@ -9,7 +9,7 @@ versionsuffix = '-Ruby-%s' % local_rubyver
 homepage = 'https://fortranxunit.sourceforge.io'
 description = "FORTRAN Unit Test Framework (FRUIT)"
 
-toolchain = {'name': 'intel', 'version': '2018a'}
+toolchain = {'name': 'foss', 'version': '2018a'}
 
 source_urls = ['https://sourceforge.net/projects/fortranxunit/files/fruit_%(version)s']
 
