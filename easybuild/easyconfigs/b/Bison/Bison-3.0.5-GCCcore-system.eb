@@ -1,7 +1,7 @@
 easyblock = 'ConfigureMake'
 
 name = 'Bison'
-version = '3.0.4'
+version = '3.0.5'
 
 homepage = 'http://www.gnu.org/software/bison'
 description = """Bison is a general-purpose parser generator that converts an annotated context-free grammar
@@ -11,13 +11,9 @@ toolchain = {'name': 'GCCcore', 'version': 'system'}
 # Can't rely on binutils in this case (since this is a dep) so switch off architecture optimisations
 toolchainopts = {'optarch': False}
 
-source_urls = [GNU_SOURCE]
 sources = [SOURCELOWER_TAR_GZ]
-patches = ['Bison-%(version)s_glibc_2.28.patch']
-checksums = [
-    'b67fd2daae7a64b5ba862c66c07c1addb9e6b1b05c5f2049392cfd8a2172952e',  # bison-3.0.4.tar.gz
-    'bdceb534ef7717bdbbd272bbdf154d5a41e8073cd8d49fe0b02540bbdba68a57',  # Bison-3.0.4_glibc_2.28.patch
-]
+source_urls = [GNU_SOURCE]
+checksums = ['cd399d2bee33afa712bac4b1f4434e20379e9b4099bce47189e09a7675a2d566']
 
 builddependencies = [
     ('M4', '1.4.18'),
