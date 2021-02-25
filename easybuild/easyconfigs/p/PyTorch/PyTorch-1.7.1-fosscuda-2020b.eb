@@ -5,7 +5,7 @@ homepage = 'https://pytorch.org/'
 description = """Tensors and Dynamic neural networks in Python with strong GPU acceleration.
 PyTorch is a deep learning framework that puts Python first."""
 
-toolchain = {'name': 'foss', 'version': '2020b'}
+toolchain = {'name': 'fosscuda', 'version': '2020b'}
 
 osdependencies = [OS_PKG_IBVERBS_DEV]
 
@@ -28,7 +28,13 @@ dependencies = [
     ('numactl', '2.0.13'),
     ('FFmpeg', '4.3.1'),
     ('Pillow', '8.0.1'),
+    ('cuDNN', '8.0.4.30', '-CUDA-%(cudaver)s', True),
+    ('magma', '2.5.4'),
+    ('NCCL', '2.8.3', '-CUDA-%(cudaver)s', True),
 ]
+
+# default CUDA compute capabilities to use (override via --cuda-compute-capabilities)
+cuda_compute_capabilities = ['3.5', '3.7', '5.2', '6.0', '6.1', '7.0', '7.2', '7.5', '8.0']
 
 # PyTorch pulls in a bunch of submodules that are not releases.
 # We download the submodule revisions from their repos.
@@ -239,6 +245,13 @@ patches = [
     'PyTorch-1.7.0_avoid-nan-in-test-torch.patch',
     'PyTorch-1.7.0_increase-distributed-test-timeout.patch',
     'PyTorch-1.7.0_disable-dev-shm-test.patch',
+    'PyTorch-1.7.1_correctly-pass-jit_opt_level.patch',
+    'PyTorch-1.7.1_detect-max-ccc-from-nvrtc.patch',
+    'PyTorch-1.7.1_dont-use-gpu-ccc-in-test.patch',
+    'PyTorch-1.7.1_validate-num-gpus-in-distributed-test.patch',
+    'PyTorch-1.7.1_complex32.patch',
+    'PyTorch-1.7.1_bypass-nan-compare.patch',
+    'PyTorch-1.7.1_fix-use-after-destruct-in-cudaipctypes.patch',
 ]
 checksums = [
     'fc8d6aaf0bdedd4221617be8d47ac39af57605bdcc814fabc28739427b55e9c7',  # v1.7.1.tar.gz
@@ -288,6 +301,17 @@ checksums = [
     # PyTorch-1.7.0_increase-distributed-test-timeout.patch
     '95abb468a35451fbd0f864ca843f6ad15ff8bfb909c3fd580f65859b26c9691c',
     '622cb1eaeadc06e13128a862d9946bcc1f1edd3d02b259c56a9aecc4d5406b8a',  # PyTorch-1.7.0_disable-dev-shm-test.patch
+    # PyTorch-1.7.1_correctly-pass-jit_opt_level.patch
+    'd4d967d47f8a6172fcbf57f0a61835482968850967c4fdb01108b720696a988d',
+    # PyTorch-1.7.1_detect-max-ccc-from-nvrtc.patch
+    '96241088dbfcd4db93bd5faadecabce6259a495ffd24b75101444cd0e164c12b',
+    '12be5139e4e7aeec214bb38b123b09b391cd1ca72ce5ded6e61590cfae801824',  # PyTorch-1.7.1_dont-use-gpu-ccc-in-test.patch
+    # PyTorch-1.7.1_validate-num-gpus-in-distributed-test.patch
+    'd27f7b5149632512b6fe226837df914aad35c88f8b490856dc6dd90ea1e5d7e6',
+    '6028bff2be720cf70acad2129db60fd10872e02c9e460c72bb274228cf90b320',  # PyTorch-1.7.1_complex32.patch
+    '0943496231b6857801e2424e561d03897a6982d098cba5b6967017b391a7e977',  # PyTorch-1.7.1_bypass-nan-compare.patch
+    # PyTorch-1.7.1_fix-use-after-destruct-in-cudaipctypes.patch
+    '250345aad08fb72deaaee9b249d9661d4ce93d08661b32d7856ed57e4aa8142e',
 ]
 
 excluded_tests = {
