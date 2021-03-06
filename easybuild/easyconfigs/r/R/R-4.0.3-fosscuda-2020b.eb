@@ -5,7 +5,7 @@ homepage = 'https://www.r-project.org/'
 description = """R is a free software environment for statistical computing
  and graphics."""
 
-toolchain = {'name': 'foss', 'version': '2020b'}
+toolchain = {'name': 'fosscuda', 'version': '2020b'}
 
 source_urls = ['https://cloud.r-project.org/src/base/R-%(version_major)s']
 sources = [SOURCE_TAR_GZ]
@@ -45,6 +45,7 @@ dependencies = [
     ('ImageMagick', '7.0.10-35'),  # for animation
     ('GLPK', '4.65'),  # for Rglpk
     ('nodejs', '12.19.0'),  # for V8 (required by rstan)
+    ('pocl', '1.6'),  # for OpenCL support (particularly on POWER)
     # OS dependency should be preferred if the os version is more recent then
     # this version, it's nice to have an up to date openssl for security
     # reasons
@@ -53,6 +54,14 @@ dependencies = [
 
 osdependencies = [OS_PKG_OPENSSL_DEV]
 
+# default CUDA compute capabilities to use (override via --cuda-compute-capabilities)
+cuda_compute_capabilities = ['3.5', '3.7', '5.2', '6.0', '6.1', '7.0', '7.2', '7.5', '8.0']
+
+# replace hardcoded CUDA compute capabilitites in liquidSVM
+local_cuda_cc = [c.replace('.', '') for c in cuda_compute_capabilities]
+local_cuda_arch = "-arch sm_%s" % local_cuda_cc[0]
+local_cuda_gencode = ' '.join(['-gencode=arch=compute_%s,code=sm_%s' % (c, c) for c in local_cuda_cc])
+local_liquidSVM_sed = "sed -i 's/-arch sm_30/%s %s/' src/Makevars.in" % (local_cuda_arch, local_cuda_gencode)
 configopts = "--with-pic --enable-threads --enable-R-shlib"
 # some recommended packages may fail in a parallel build (e.g. Matrix), and
 # we're installing them anyway below
@@ -2174,8 +2183,9 @@ exts_list = [
             # liquidSVM-1.2.4-fix_ppc_and_aarch64_build.patch
             '46b09e441c3b59af535f20d8db0dee7f1d6a7ddd511175d252115b53cb8b86f8',
         ],
+        # Replace hardcoded CUDA compute capabilities with settings from EB
         # Don't add optimization flags by liquidSVM which may not be known e.g. on PPC
-        'preinstallopts': 'LIQUIDSVM_TARGET="empty"',
+        'preinstallopts': local_liquidSVM_sed + " && LIQUIDSVM_TARGET='empty'",
     }),
     ('oddsratio', '2.0.1', {
         'checksums': ['2097e7a8bf623379d55652de5dce4946d05163e85d30df50dc19055962bf60b5'],
@@ -2781,6 +2791,13 @@ exts_list = [
     }),
     ('rnetcarto', '0.2.4', {
         'checksums': ['266702330250e9fbeb8616d86edf1d50d63084a0731d17e84a04dc6faacf653a'],
+    }),
+    # Specific packages for GPUs
+    ('OpenCL', '0.2-1', {
+        'checksums': ['5cc80395bf3c28a27ff124e3d602e8037487f8f6d1800ccb6c145eb432c716ae'],
+    }),
+    ('RViennaCL', '1.7.1.8', {
+        'checksums': ['adcc74537337582153d5b11d281e391e91a7f3afae116aa1b9a034ffd11b0252'],
     }),
 ]
 
