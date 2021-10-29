@@ -1,7 +1,7 @@
 easyblock = 'PythonBundle'
 
 name = 'TensorFlow'
-version = '2.4.1'
+version = '2.5.0'
 versionsuffix = '-Python-%(pyver)s'
 
 homepage = 'https://www.tensorflow.org/'
@@ -11,7 +11,7 @@ toolchain = {'name': 'fosscuda', 'version': '2019b'}
 toolchainopts = {'pic': True}
 
 builddependencies = [
-    ('Bazel', '3.7.1'),
+    ('Bazel', '3.7.2'),
     ('protobuf', '3.10.0'),
     # git 2.x required, see also https://github.com/tensorflow/tensorflow/issues/29053
     ('git', '2.23.0', '-nodocs'),
@@ -20,7 +20,7 @@ builddependencies = [
 ]
 dependencies = [
     ('cuDNN', '7.6.4.38'),
-    ('NCCL', '2.4.8'),
+    ('NCCL', '2.11.4'),
     ('Python', '3.7.4'),
     ('h5py', '2.10.0', versionsuffix),
     ('cURL', '7.66.0'),
@@ -50,21 +50,21 @@ sanity_pip_check = True
 # Dependencies created and updated using findPythonDeps.sh:
 # https://gist.github.com/Flamefire/49426e502cd8983757bd01a08a10ae0d
 exts_list = [
-    ('Markdown', '3.3.3', {
-        'checksums': ['5d9f2b5ca24bc4c7a390d22323ca4bad200368612b5aaa7796babf971d2b2f18'],
+    ('Markdown', '3.3.4', {
+        'checksums': ['31b5b491868dcc87d6c24b7e3d19a0d730d59d3e46f4eea6430a321bed387a49'],
     }),
     ('pyasn1-modules', '0.2.8', {
         'checksums': ['905f84c712230b2c592c19470d3ca8d552de726050d1d1716282a1f6146be65e'],
     }),
-    ('rsa', '4.7', {
-        'checksums': ['69805d6b69f56eb05b62daea3a7dbd7aa44324ad1306445e05da8060232d00f4'],
+    ('rsa', '4.7.2', {
+        'checksums': ['9d689e6ca1b3038bc82bf8d23e944b6b6037bc02301a574935b2dd946e0353b9'],
     }),
-    ('cachetools', '4.2.0', {
-        'checksums': ['3796e1de094f0eaca982441c92ce96c68c89cced4cd97721ab297ea4b16db90e'],
+    ('cachetools', '4.2.2', {
+        'checksums': ['61b5ed1e22a0924aed1d23b478f37e8d52549ff8a961de2909c69bf950020cff'],
     }),
-    ('google-auth', '1.24.0', {
+    ('google-auth', '1.30.0', {
         'modulename': 'google.auth',
-        'checksums': ['0b0e026b412a0ad096e753907559e4bdb180d9ba9f68dd9036164db4fdc4ad2e'],
+        'checksums': ['9ad25fba07f46a628ad4d0ca09f38dcb262830df2ac95b217f9b0129c9e42206'],
     }),
     ('oauthlib', '3.1.0', {
         'checksums': ['bee41cc35fcca6e988463cacc3bcb8a96224f470ca547e697b604cc697b2f889'],
@@ -72,39 +72,40 @@ exts_list = [
     ('requests-oauthlib', '1.3.0', {
         'checksums': ['b4261601a71fd721a8bd6d7aa1cc1d6a8a93b4a9f5e96626f8e4d91e8beeaa6a'],
     }),
-    ('google-auth-oauthlib', '0.4.2', {
-        'checksums': ['65b65bc39ad8cab15039b35e5898455d3d66296d0584d96fe0e79d67d04c51d9'],
+    ('google-auth-oauthlib', '0.4.4', {
+        'checksums': ['09832c6e75032f93818edf1affe4746121d640c625a5bef9b5c96af676e98eee'],
     }),
-    ('Werkzeug', '1.0.1', {
-        'checksums': ['6c80b1e5ad3665290ea39320b91e1be1e0d5f60652b964a3070216de83d2e47c'],
+    ('Werkzeug', '2.0.0', {
+        'checksums': ['3389bbfe6d40c6dd25e6d3f974155163c8b3de5bbda6a89342d4ab93fae80ba0'],
     }),
-    ('absl-py', '0.10.0', {
+    ('absl-py', '0.12.0', {
         'modulename': 'absl',
-        'checksums': ['b20f504a7871a580be5268a18fbad48af4203df5d33dbc9272426cb806245a45'],
+        'checksums': ['b44f68984a5ceb2607d135a615999b93924c771238a63920d17d3387b0d229d5'],
     }),
     ('astunparse', '1.6.3', {
         'checksums': ['5ad93a8456f0d084c3456d059fd9a92cce667963232cbf763eac3bc5b7940872'],
     }),
-    ('grpcio', '1.32.0', {
+    ('grpcio', '1.34.1', {
         'modulename': 'grpc',
-        'checksums': ['01d3046fe980be25796d368f8fc5ff34b7cf5e1444f3789a017a7fe794465639'],
+        'checksums': ['1c746a3cd8a830d8d916a9d0476a786aaa98c5cc2a096344af2be955e439f8ac'],
     }),
     ('gviz-api', '1.9.0', {
         'source_tmpl': 'gviz_api-%(version)s.tar.gz',
         'checksums': ['43d13ccc21834d0501b33a291ef3265e933dbb4bbdca3d34b1ed0a048c0ef640'],
     }),
-    ('tensorboard', version, {
-        'source_tmpl': 'tensorboard-%(version)s-py3-none-any.whl',
-        'unpack_sources': False,
-        'checksums': ['7b8c53c396069b618f6f276ec94fc45d17e3282d668979216e5d30be472115e4'],
+    ('tensorboard_data_server', '0.6.1', {
+        'source_tmpl': SOURCE_PY3_WHL,  # Requires Rust to build, take the dummy for now
+        'checksums': ['809fe9887682d35c1f7d1f54f0f40f98bb1f771b14265b453ca051e2ce58fca7'],
     }),
-    ('tensorboard-plugin-wit', '1.8.0', {
-        'source_tmpl': 'tensorboard_plugin_wit-%(version)s-py3-none-any.whl',
-        'unpack_sources': False,
+    ('tensorboard', version, {
+        'source_tmpl': SOURCE_PY3_WHL,
+        'checksums': ['e167460085b6528956b33bab1c970c989cdce47a6616273880733f5e7bde452e'],
+    }),
+    ('tensorboard_plugin_wit', '1.8.0', {
+        'source_tmpl': SOURCE_PY3_WHL,
         'checksums': ['2a80d1c551d741e99b2f197bb915d8a133e24adb8da1732b840041860f91183a'],
     }),
-    ('tensorboard-plugin-profile', '2.4.0', {
-        'source_tmpl': 'tensorboard_plugin_profile-%(version)s.tar.gz',
+    ('tensorboard_plugin_profile', '2.4.0', {
         'checksums': ['dfbf254ee960440e3b2518324f876a6d6704c60b936887d99214fa36988a206a'],
     }),
     ('google-pasta', '0.2.0', {
@@ -114,26 +115,23 @@ exts_list = [
     ('termcolor', '1.1.0', {
         'checksums': ['1d6d69ce66211143803fbc56652b41d73b4a400a2891d7bf7a1cdf4c02de613b'],
     }),
-    ('tensorflow-estimator', '2.4.0', {
-        'source_tmpl': 'tensorflow_estimator-%(version)s-py2.py3-none-any.whl',
-        'unpack_sources': False,
-        'checksums': ['5b7b7bf2debe19a8794adacc43e8ba6459daa4efaf54d3302623994a359b17f0'],
+    ('tensorflow_estimator', version, {
+        'source_tmpl': SOURCE_WHL,
+        'checksums': ['d1fe76dee8b1dcab865d807a0246da0a9c4a635b1eba6e9545bf216c3aad6955'],
     }),
     ('astor', '0.8.1', {
         'checksums': ['6a6effda93f4e1ce9f618779b2dd1d9d84f1e32812c23a29b3fff6fd7f63fa5e'],
     }),
-    ('gast', '0.3.3', {
-        'checksums': ['b881ef288a49aa81440d2c5eb8aeefd4c2bb8993d5f50edae7413a85bfdb3b57'],
+    ('gast', '0.4.0', {
+        'checksums': ['40feb7b8b8434785585ab224d1568b857edb18297e5a3047f1ba012bc83b42c1'],
     }),
-    ('opt-einsum', '3.3.0', {
-        'source_tmpl': 'opt_einsum-%(version)s.tar.gz',
+    ('opt_einsum', '3.3.0', {
         'checksums': ['59f6475f77bbc37dcf7cd748519c0ec60722e91e63ca114e68821c0c54a46549'],
     }),
     ('wrapt', '1.12.1', {
         'checksums': ['b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7'],
     }),
-    ('Keras-Preprocessing', '1.1.2', {
-        'source_tmpl': 'Keras_Preprocessing-%(version)s.tar.gz',
+    ('Keras_Preprocessing', '1.1.2', {
         'checksums': ['add82567c50c8bc648c14195bf544a5ce7c1f76761536956c3d2978970179ef3'],
     }),
     ('dill', '0.3.3', {
@@ -147,26 +145,60 @@ exts_list = [
         'checksums': ['d2cdc776873635ed421315c4d22e63280042456bbfa07397817e687b142b9667'],
     }),
     (name, version, {
-        'patches': [
-            'TensorFlow-2.1.0_fix-cuda-build.patch',
-            'TensorFlow-2.3.1_disable-float128-on-power.patch',
-            'TensorFlow-2.4.0_add-default-shell-env.patch',
-            'TensorFlow-2.4.0_fix-eigen-on-power.patch',
-            'TensorFlow-2.4.0_downgrade-required-versions.patch',
-            'TensorFlow-2.4.0_add-protobuf-deps.patch',
-            'TensorFlow-2.4.0_add-ldl.patch',
-            'TensorFlow-2.4.0_add-missing-llvm-deps.patch',
-            'TensorFlow-2.4.0_fix-absl-on-power.patch',
-            'TensorFlow-2.4.0_dont-use-var-lock.patch',
-            'TensorFlow-2.4.1-fix-alias-violation-in-absl.patch',
-            'TensorFlow-2.4.1_fix-min-priority-test.patch',
-            'TensorFlow-2.4.1_remove-duplicate-gpu-tests.patch',
-        ],
         'source_tmpl': 'v%(version)s.tar.gz',
         'source_urls': ['https://github.com/tensorflow/tensorflow/archive/'],
+        'patches': [
+            'TensorFlow-2.1.0_fix-cuda-build.patch',
+            'TensorFlow-2.4.0_add-ldl.patch',
+            'TensorFlow-2.4.0_dont-use-var-lock.patch',
+            'TensorFlow-2.4.1_fix-min-priority-test.patch',
+            'TensorFlow-2.5.0_add-default-shell-env.patch',
+            'TensorFlow-2.5.0_add-protobuf-deps.patch',
+            'TensorFlow-2.5.0_add-support-for-large-core-systems.patch',
+            'TensorFlow-2.5.0_disable-avx512-extensions.patch',
+            'TensorFlow-2.5.0_downgrade-required-versions.patch',
+            'TensorFlow-2.5.0_fix-alignment-in-matmul-test.patch',
+            'TensorFlow-2.5.0_fix-arm-vector-intrinsics.patch',
+            'TensorFlow-2.5.0_fix-CUDA10-build.patch',
+            'TensorFlow-2.5.0_fix-cub-cuda-dep.patch',
+            'TensorFlow-2.5.0_remove-duplicate-gpu-tests.patch',
+            'TensorFlow-2.5.0-fix-alias-violation-in-absl.patch',
+        ],
+        'checksums': [
+            '233875ea27fc357f6b714b2a0de5f6ff124b50c1ee9b3b41f9e726e9e677b86c',  # v2.5.0.tar.gz
+            '78c20aeaa7784b8ceb46238a81e8c2461137d28e0b576deeba8357d23fbe1f5a',  # TensorFlow-2.1.0_fix-cuda-build.patch
+            '917ee7282e782e48673596d8917c3207e60e0851bb9acf230a2a439b067af2e3',  # TensorFlow-2.4.0_add-ldl.patch
+            # TensorFlow-2.4.0_dont-use-var-lock.patch
+            'b14f2493fd2edf79abd1c4f2dde6c98a3e7d5cb9c25ab9386df874d5f072d6b5',
+            # TensorFlow-2.4.1_fix-min-priority-test.patch
+            '389febce9a0612fd457daf4cb18c02f77fc7311bacae0963602a3198d9f2737f',
+            # TensorFlow-2.5.0_add-default-shell-env.patch
+            '09b0c5d4ff04f56a9657875471ed78001d4201cac795aeff62019d582115b468',
+            # TensorFlow-2.5.0_add-protobuf-deps.patch
+            '2aa79b89cff13e81f83e385761917d5d6dbdffd6b0366d90580761b958f14363',
+            # TensorFlow-2.5.0_add-support-for-large-core-systems.patch
+            '915f3477d6407fafd48269fe1e684a05ce361d9b9b85e58686682df87760f636',
+            # TensorFlow-2.5.0_disable-avx512-extensions.patch
+            '3655ce24c97569ac9738c07cac85347ba6f5c815ada95b19b606ffa46d4dda03',
+            # TensorFlow-2.5.0_downgrade-required-versions.patch
+            '019f7bbf6604f581a8028a7c9caa9ce05dcc336523822177c4c5e76b9a99a95a',
+            # TensorFlow-2.5.0_fix-alignment-in-matmul-test.patch
+            '6a4d6cbf45a622b8a2c3ea0b1c0171f01f595684d9c57d415bb39b1b27e1180f',
+            # TensorFlow-2.5.0_fix-arm-vector-intrinsics.patch
+            '6abfadc0f67ff3b510d70430843201cb46d7bd65db045ec9b482af70e0c8c0c8',
+            # TensorFlow-2.5.0_fix-CUDA10-build.patch
+            'f6b44c82855bd2892ca67b528076acdaa75d8b9158aa25d84c808d1ce4d89256',
+            # TensorFlow-2.5.0_fix-cub-cuda-dep.patch
+            '072887146b66af61aeab22cbd1561d69fba691d996d11b58529ba935a2f61593',
+            # TensorFlow-2.5.0_remove-duplicate-gpu-tests.patch
+            'b940d438e036faac24453bff2cf1834c5e1359e87e84d1f1999fa7a30b278fec',
+            # TensorFlow-2.5.0-fix-alias-violation-in-absl.patch
+            '12454fda3330fb45cd380377e283f04488b40e0b8ae7378e786ddf731a581f75',
+        ],
         'test_script': 'TensorFlow-2.x_mnist-test.py',
         'test_tag_filters_cpu': '-gpu,-tpu,-no_cuda_on_cpu_tap,-no_pip,-no_oss,-oss_serial,-benchmark-test,-v1only',
-        'test_tag_filters_gpu': 'gpu,-no_gpu,-nogpu,-no_pip,-no_oss,-oss_serial,-benchmark-test,-v1only',
+        'test_tag_filters_gpu': ('gpu,-no_gpu,-nogpu,-gpu_cupti,-no_cuda11,-no_pip,-no_oss,-oss_serial,'
+                                 '-benchmark-test,-v1only'),
         'test_targets': [
             '//tensorflow/core/...',
             '-//tensorflow/core:example_java_proto',
@@ -174,8 +206,6 @@ exts_list = [
             '//tensorflow/cc/...',
             '//tensorflow/c/...',
             '//tensorflow/python/...',
-            # Requires access to CUPTI (privileged!)
-            '-//tensorflow/core/profiler/internal/gpu:device_tracer_test',
             # Fails on some nodes but C API isn't installed anyway
             '-//tensorflow/c/eager:c_api_test_gpu',
             '-//tensorflow/c/eager:c_api_distributed_test',
@@ -184,46 +214,18 @@ exts_list = [
             '-//tensorflow/c/eager:c_api_cluster_test_gpu',
             '-//tensorflow/c/eager:c_api_remote_function_test_gpu',
             '-//tensorflow/c/eager:c_api_remote_test_gpu',
-            # Invalid alignment: https://github.com/tensorflow/tensorflow/issues/46460
-            '-//tensorflow/core/kernels:sparse_matmul_op_test',
-            '-//tensorflow/core/kernels:sparse_matmul_op_test_gpu',
             # Fails to open its own test.xml(?)
             '-//tensorflow/core/common_runtime:collective_param_resolver_local_test',
             # Fails on non-AVX-512 systems: https://github.com/tensorflow/tensorflow/issues/46532
             '-//tensorflow/core/common_runtime:mkl_layout_pass_test',
             '-//tensorflow/core/kernels/mkl:mkl_fused_ops_test',
+            # Fails on AMD EPYC systems: https://github.com/tensorflow/tensorflow/issues/52151
+            '-//tensorflow/core/kernels/mkl:mkl_fused_batch_norm_op_test',
         ],
         'testopts': "--test_timeout=3600 --test_size_filters=small",
         'testopts_gpu': "--test_timeout=3600 --test_size_filters=small " +
                         "--run_under=//tensorflow/tools/ci_build/gpu_build:parallel_gpu_execute",
         'with_xla': True,
-        'checksums': [
-            'f681331f8fc0800883761c7709d13cda11942d4ad5ff9f44ad855e9dc78387e0',  # v2.4.1.tar.gz
-            '78c20aeaa7784b8ceb46238a81e8c2461137d28e0b576deeba8357d23fbe1f5a',  # TensorFlow-2.1.0_fix-cuda-build.patch
-            # TensorFlow-2.3.1_disable-float128-on-power.patch
-            'a8369e92559cce4566ff831e615420fd98b83106c73ee3af7fbd5335c5fcd569',
-            # TensorFlow-2.4.0_add-default-shell-env.patch
-            '033a870b458406f4cabab878c4183cdf54cd7627648f24c8cc9f1964ff24d292',
-            # TensorFlow-2.4.0_fix-eigen-on-power.patch
-            '761303a9d5a0e78b833610891194e497a45f1218cfcb0ac4854a0d31d3156c2b',
-            # TensorFlow-2.4.0_downgrade-required-versions.patch
-            'ac8f53662ad0bb660089c17bb433faf1ce3c2238234a2c3be7d92c8e02c1a8d6',
-            # TensorFlow-2.4.0_add-protobuf-deps.patch
-            '0ae2f4f1f1dc5b85f61edbe8a4a91dcffd5cf7588fa46c6a143455e4bc41a64e',
-            '917ee7282e782e48673596d8917c3207e60e0851bb9acf230a2a439b067af2e3',  # TensorFlow-2.4.0_add-ldl.patch
-            # TensorFlow-2.4.0_add-missing-llvm-deps.patch
-            'ce8c41e75f9854e547d03de99ae72cf41afa967b20439e864bc4af3dd4f565c7',
-            # TensorFlow-2.4.0_fix-absl-on-power.patch
-            'cd0e1181cfc56c259cb57b7f9590816db5f5cde3fab39b3386c001359ca6e9fa',
-            # TensorFlow-2.4.0_dont-use-var-lock.patch
-            'b14f2493fd2edf79abd1c4f2dde6c98a3e7d5cb9c25ab9386df874d5f072d6b5',
-            # TensorFlow-2.4.1-fix-alias-violation-in-absl.patch
-            '33744bbf4ccbd5995e5e12336eb571c849ccbbc0e493fee8a3cf03bc7d5a0919',
-            # TensorFlow-2.4.1_fix-min-priority-test.patch
-            '389febce9a0612fd457daf4cb18c02f77fc7311bacae0963602a3198d9f2737f',
-            # TensorFlow-2.4.1_remove-duplicate-gpu-tests.patch
-            'f384cd97e004673ae530b6e5cc826f8fddb46646991f1a228fc07b2aac87ee80',
-        ],
     }),
 ]
 
