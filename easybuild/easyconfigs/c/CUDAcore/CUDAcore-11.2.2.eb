@@ -1,8 +1,11 @@
+##
+# Author:    Robert Mijakovic <robert.mijakovic@lxp.lu>
+##
 easyblock = 'EB_CUDA'
 
 name = 'CUDAcore'
-version = '11.1.1'
-local_nv_version = '455.32.00'
+version = '11.2.2'
+local_nv_version = '460.32.03'
 
 homepage = 'https://developer.nvidia.com/cuda-toolkit'
 description = """CUDA (formerly Compute Unified Device Architecture) is a parallel
@@ -17,11 +20,11 @@ sources = ['cuda_%%(version)s_%s_linux%%(cudaarch)s.run' % local_nv_version]
 checksums = [
     {
         'cuda_%%(version)s_%s_linux.run' % local_nv_version:
-            '3eae6727086024925ebbcef3e9a45ad379d8490768fd00f9c2d8b6fd9cd8dd8f',
+            '0a2e477224af7f6003b49edfd2bfee07667a8148fe3627cfd2765f6ad72fa19d',
         'cuda_%%(version)s_%s_linux_ppc64le.run' % local_nv_version:
-            '023e571fe26ee829c98138dfc305a92279854aac7d184d255fd58c06c6af3c17',
+            '2304ec235fe5d1f8bf75f00dc2c2d11473759dc23428dbbd5fb5040bc8c757e3',
         'cuda_%%(version)s_%s_linux_sbsa.run' % local_nv_version:
-            '9ab1dbafba205c06bea8c88e38cdadb3038af19cb56e7b3ba734d3d7a84b8f02',
+            '2f915ad631331eebdafaabd971723a60290ae8bb090d771075b9e6a0b28cbae6'
     }
 ]
 
