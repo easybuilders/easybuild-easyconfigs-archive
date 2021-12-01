@@ -1,5 +1,5 @@
 name = 'Python'
-version = '3.9.6'
+version = '2.7.18'
 versionsuffix = '-bare'
 
 homepage = 'https://python.org/'
@@ -11,10 +11,9 @@ toolchainopts = {'pic': True}
 
 source_urls = ['https://www.python.org/ftp/%(namelower)s/%(version)s/']
 sources = [SOURCE_TGZ]
-checksums = ['d0a35182e19e416fc8eae25a3dcd4d02d4997333e4ad1f2eee6010aadc3fe866']
+checksums = ['da3080e3b488f648a3d7a4560ddee895284c3380b11d6de75edb986526b9a814']
 
 builddependencies = [
-    ('UnZip', '6.0'),
     ('pkg-config', '0.29.2'),
 ]
 
@@ -25,8 +24,6 @@ dependencies = [
     ('libreadline', '8.1'),
     ('ncurses', '6.2'),
     ('SQLite', '3.36'),
-    ('XZ', '5.2.5'),
-    ('libffi', '3.4.2'),
     ('OpenSSL', '1.1', '', True),
 ]
 
