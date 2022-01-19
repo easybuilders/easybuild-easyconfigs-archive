@@ -1,7 +1,7 @@
 easyblock = 'PythonPackage'
 
 name = 'Pillow-SIMD'
-version = '8.3.1'
+version = '8.3.2'
 
 homepage = 'https://github.com/uploadcare/pillow-simd'
 description = """Pillow is the 'friendly PIL fork' by Alex Clark and Contributors.
@@ -11,11 +11,7 @@ toolchain = {'name': 'GCCcore', 'version': '11.2.0'}
 
 source_urls = ['https://github.com/uploadcare/pillow-simd/archive/']
 sources = ['%(version)s.tar.gz']
-patches = ['Pillow-%(version_major)s_CVE-2021-23437.patch']
-checksums = [
-    'bf77f392094e3bb24ca56ef8bbc4ea0d9752226ff348682d849c0aa8c1577980',  # 8.3.1.tar.gz
-    '12bac0ff4f815d1e60ed129106c2990c8c6157891fd90ec8aaec88a5a642d521',  # Pillow-8_CVE-2021-23437.patch
-]
+checksums = ['095bcf74c6e4d36e1e1ff2d7926b83169f0dc29bb6731734c39d3c9522ae81b2']
 
 builddependencies = [('binutils', '2.37')]
 
