@@ -20,16 +20,10 @@ checksums = ['500db9c3b2617e1f03d0e548977aec10d36811ba1c43bb5ef250c0e3853ae1c2']
 
 builddependencies = [('CMake', '3.18.4'), ('binutils', '2.35')]
 
-separate_build_dir = True
-
-postinstallcmds = ['mkdir %(installdir)s/lib64/blitz']
-
 sanity_check_paths = {
     'files': ['lib64/libblitz.a', 'lib64/libblitz.%s' % SHLIB_EXT],
     'dirs': ['include/blitz/array', 'include/blitz/meta',
              'include/random', 'lib64/pkgconfig'],
 }
-
-configopts = '--enable-shared'
 
 moduleclass = 'lib'
