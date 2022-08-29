@@ -9,14 +9,15 @@
 # * Kenneth Hoste <kenneth.hoste@ugent.be>
 # * Adam Huffman <adam.huffman@crick.ac.uk>
 # * Ake Sandgren <ake.sandgren@hpc2n.umu.se>
-# * J. Sassmannshausen <Crick HPC team>
 # * Dugan Witherick <dugan.witherick@warwick.ac.uk>
 # * Christoph Siegert <christoph.siegert@uni-leipzig.de>
+# * J. Sassmannshausen <j.sassmannshausen@imperial.ac.uk>
 # License::   MIT/GPL
 
 name = 'GROMACS'
 version = '2021.5'
-versionsuffix = '-CUDA-%(cudaver)s'
+_plumedver = '2.8.0'
+versionsuffix = '-PLUMED-%s' % _plumedver
 
 homepage = 'https://www.gromacs.org'
 description = """
@@ -24,10 +25,11 @@ GROMACS is a versatile package to perform molecular dynamics, i.e. simulate the
 Newtonian equations of motion for systems with hundreds to millions of
 particles.
 
-This is a GPU enabled build, containing both MPI and threadMPI builds.
+This is a CPU only build, containing both MPI and threadMPI builds
+for both single and double precision.
 
-It also contains the gmxapi extension for the single precision MPI build.
-"""
+It also contains the gmxapi extension for the single precision MPI build
+next to PLUMED."""
 
 toolchain = {'name': 'foss', 'version': '2021b'}
 toolchainopts = {'openmp': True, 'usempi': True}
@@ -42,7 +44,7 @@ patches = [
     'GROMACS-2019_increase_test_timeout_for_GPU.patch',
     'GROMACS-2021_fix_gmxapi_gmx_allowed_cmd_name.patch',
     'GROMACS-2021.5_fix_threads_gpu_Gmxapitests.patch',
-    'GROMACS-2021_add-missing-sync.patch',
+    'GROMACS-2021.3_skip_test_for_plumed.patch',
 ]
 checksums = [
     'eba63fe6106812f72711ef7f76447b12dd1ee6c81b3d8d4d0e3098cd9ea009b6',  # gromacs-2021.5.tar.gz
@@ -54,21 +56,25 @@ checksums = [
     'b7ffb292ec362e033db1bedd340353f0644dbaae872127750f3dda1ac7e87d49',
     # GROMACS-2021.5_fix_threads_gpu_Gmxapitests.patch
     '7d39da0b431fbc9e94e857552246eb0ec892f26b13e519b3706785cc5e01a563',
-    '52ee257309ff7761c2dd5b26de7dbc63f8ba698082adb88e2843f90e3f9168bf',  # GROMACS-2021_add-missing-sync.patch
+    # GROMACS-2021.3_skip_test_for_plumed.patch    
+    'c06d0a8c3e75b232224f46bc3b70e135c4c02ec4151712970f5edd85d890f018',
 ]
 
 builddependencies = [
     ('CMake', '3.22.1'),
     ('scikit-build', '0.11.1'),
+    ('Doxygen', '1.9.1'),
 ]
 
 dependencies = [
     ('Python', '3.9.6'),
     ('SciPy-bundle', '2021.10'),
     ('networkx', '2.6.3'),
-    ('CUDA', '11.4.1', '', True),
-    ('UCX-CUDA', '1.11.2', versionsuffix),
+    ('PLUMED', _plumedver),
 ]
+
+# PLUMED-2.7.3 does not officially support GROMACS-2021.5, but seems to work fine
+ignore_plumed_version_check = True
 
 exts_defaultclass = 'PythonPackage'
 

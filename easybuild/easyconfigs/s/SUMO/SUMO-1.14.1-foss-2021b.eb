@@ -1,7 +1,7 @@
 easyblock = 'CMakeMake'
 
 name = 'SUMO'
-version = '1.12.0'
+version = '1.14.1'
 
 homepage = 'https://www.eclipse.org/sumo/'
 description = """Simulation of Urban MObility" (SUMO) is an open source, highly portable,
@@ -16,7 +16,7 @@ source_urls = [GITHUB_LOWER_SOURCE]
 sources = ['v%s.tar.gz' % version.replace('.', '_')]
 patches = ['SUMO-1.0.0_fix-link-flags.patch']
 checksums = [
-    '049f5f50d1d27352d868cbb4b2a4b59bc0a913ef792b619c1adf1a289b3e48a7',  # v1_12_0.tar.gz
+    '46ee6080902bb9056a1aa6fae72a270d7cfa44642487246760493b4742a2fd24',  # v1_14_1.tar.gz
     'fe7ef229baeba8a4ea2608f18f531ffbe31da16a274f7383e0d8e30d99e63e87',  # SUMO-1.0.0_fix-link-flags.patch
 ]
 
