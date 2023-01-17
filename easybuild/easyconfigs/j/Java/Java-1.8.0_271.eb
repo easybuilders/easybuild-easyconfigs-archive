@@ -1,5 +1,5 @@
 name = 'Java'
-version = '1.8.0_241'
+version = '1.8.0_271'
 
 homepage = 'https://java.com/'
 description = """Java Platform, Standard Edition (Java SE) lets you develop and deploy
@@ -10,7 +10,7 @@ toolchain = SYSTEM
 (local_vp, local_vs) = version.split('_')
 local_altver = '%su%s' % (local_vp.split('.')[1], local_vs)
 sources = ['jdk-%s-linux-x64.tar.gz' % local_altver]
-checksums = ['419d32677855f676076a25aed58e79432969142bbd778ff8eb57cb618c69e8cb']
+checksums = ['eba7926a683bb65c6f4e1c502ce624346c42b00fb5531deba296f2560b452c78']
 
 download_instructions = """
 1. Visit https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html

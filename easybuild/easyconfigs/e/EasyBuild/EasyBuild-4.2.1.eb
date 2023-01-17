@@ -1,7 +1,7 @@
 easyblock = 'EB_EasyBuildMeta'
 
 name = 'EasyBuild'
-version = '4.1.1'
+version = '4.2.1'
 
 homepage = 'https://easybuilders.github.io/easybuild'
 description = """EasyBuild is a software build and installation framework
@@ -12,11 +12,11 @@ toolchain = SYSTEM
 
 source_urls = [
     # easybuild-framework
-    'https://files.pythonhosted.org/packages/d0/5e/ef373a4ab529d67e2df7face800976674ad0300f55067e0ca9b3625d573d/',
+    'https://files.pythonhosted.org/packages/e0/17/416046eabe410d7b8849b7414e3d4da7779f8a33f8ed7a9c8a0d5e8c296c/',
     # easybuild-easyblocks
-    'https://files.pythonhosted.org/packages/74/5b/7763bec9d5f9fd96bf77ad2e628cc04e7199ba1c4bb6d664fa6724739808/',
+    'https://files.pythonhosted.org/packages/b9/1e/c09f1af4b4527ed660d7080fccef18198a4c5d60ff4ff039acecd80e2862/',
     # easybuild-easyconfigs
-    'https://files.pythonhosted.org/packages/c2/c0/3820d06b5b62e5ba1689907e92fc78f28546dbb9a53cd80511ede33b95c0/',
+    'https://files.pythonhosted.org/packages/c1/31/f9a7d0cafd22e9f64587e0e095c3eed784c60f06a3d15a0b7d73753199bc/',
 ]
 sources = [
     'easybuild-framework-%(version)s.tar.gz',
@@ -24,9 +24,9 @@ sources = [
     'easybuild-easyconfigs-%(version)s.tar.gz',
 ]
 checksums = [
-    'fa518f56cb7b54975e31e501d3d361907b921d5faa6befc910ff2575cdbb7c05',  # easybuild-framework-4.1.1.tar.gz
-    'd82b2dee51f79d4161b65e6aa5cfc26074c09a53408bdbf7cca23a305be01a79',  # easybuild-easyblocks-4.1.1.tar.gz
-    '60dc9527c9c10d15fa040b56f7b44bdf8d2ed6200c323f1f8ab348454e58d91c',  # easybuild-easyconfigs-4.1.1.tar.gz
+    '530b071f541debccbc4b5a8e885ba6524ce398b9a12ea663c1129d0efb6a4a31',  # easybuild-framework-4.2.1.tar.gz
+    '1a38d4acc663f3b4f39cd4bee443681147dc911102854d0917096707b523deba',  # easybuild-easyblocks-4.2.1.tar.gz
+    'ace2c4d7d2b020d319a0ab5ee53167c365e3ecb4d437c962d8f486c64395bd71',  # easybuild-easyconfigs-4.2.1.tar.gz
 ]
 
 # order matters a lot, to avoid having dependencies auto-resolved (--no-deps easy_install option doesn't work?)
