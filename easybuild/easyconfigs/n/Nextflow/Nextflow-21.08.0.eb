@@ -1,19 +1,9 @@
-##
-# This is a contribution from DeepThought HPC Service, Flinders University, Adelaide, Australia
-# Homepage: 		https://staff.flinders.edu.au/research/deep-thought
-#
-# Authors::		Robert Qiao <rob.qiao@flinders.edu.au>
-# Software License::	Apache v2.0
-#
-# Notes::		Adapted from Author: @J. Sassmannshausen (Crick HPC team)
-##
-
 easyblock = 'CmdCp'
 
 name = 'Nextflow'
-version = '19.12.0'
+version = '21.08.0'
 
-homepage = 'https://www.%(namelower)s.io/'
+homepage = 'https://www.nextflow.io'
 description = """Nextflow is a reactive workflow framework and a programming DSL 
  that eases writing computational pipelines with complex data"""
 
@@ -21,10 +11,10 @@ toolchain = SYSTEM
 
 source_urls = ['https://github.com/%(namelower)s-io/%(namelower)s/archive']
 sources = ['v%(version)s-edge.tar.gz']
-checksums = ['16d38a14aeab636531da6d5d1894898d13a359c5f699eefcfb433fc3340e1b8a']
+checksums = ['ab47af92e6f5c5c08a43b70e60cc3d8720e267a507f21af62ac24805b02a2e8b']
 
-# specify dependency on Java/11 "wrapper", rather than a specific Java version
-dependencies = [('Java', '11', '', SYSTEM)]
+# specify dependency on Java/13 "wrapper", rather than a specific Java version
+dependencies = [('Java', '13', '', SYSTEM)]
 
 skipsteps = ['configure', 'build']
 

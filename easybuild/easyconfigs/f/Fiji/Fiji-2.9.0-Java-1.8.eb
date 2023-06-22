@@ -1,21 +1,19 @@
 easyblock = 'PackedBinary'
 
 name = 'Fiji'
-version = '20201104-1356'
+version = '2.9.0'
+versionsuffix = '-Java-%(javaver)s'
 
-homepage = 'https://fiji.sc/'
+homepage = 'https://fiji.sc'
 description = """Fiji is an image processing package—a 'batteries-included' distribution of
  ImageJ, bundling a lot of plugins which facilitate scientific image analysis.
 This release is based on ImageJ-2.1.0 and Fiji-2.1.1"""
 
 toolchain = SYSTEM
 
-source_urls = ['https://downloads.imagej.net/%(namelower)s/archive/%(version)s']
-sources = [{
-    'download_filename': '%(namelower)s-nojre.tar.gz',
-    'filename': '%(namelower)s-nojre-%(version)s.tar.gz',
-}]
-checksums = ['ea60c212f0c123c2e947f0171b3a3ec83c38f0a6bd4c2bf2d5a5c53ba5e464cb']
+source_urls = ['https://downloads.imagej.net/fiji/releases/%(version)s/']
+sources = ['fiji-%(version)s-nojre.zip']
+checksums = ['970fb80cf2a4fe8bfcecc2cc9a8617b9ab28f19fbe229ea6ae2f7f42674c8a42']
 
 dependencies = [('Java', '1.8', '', SYSTEM)]
 
