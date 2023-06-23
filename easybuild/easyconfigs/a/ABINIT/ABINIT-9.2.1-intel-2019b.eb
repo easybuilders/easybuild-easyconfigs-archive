@@ -10,7 +10,7 @@ description = """ABINIT is a package whose main program allows one to find the t
  and periodic solids) within Density Functional Theory (DFT), using pseudopotentials and a
  planewave or wavelet basis."""
 
-toolchain = {'name': 'foss', 'version': '2019b'}
+toolchain = {'name': 'intel', 'version': '2019b'}
 toolchainopts = {'usempi': True, 'pic': True}
 
 source_urls = ['https://www.abinit.org/sites/default/files/packages/']
@@ -27,14 +27,15 @@ dependencies = [
     ('HDF5', '1.10.5'),
 ]
 
-# Ensure MPI.
+# Ensure MPI with intel wrappers.
 configopts = '--with-mpi="yes" --enable-openmp="no" '
+configopts += ' FC="mpiifort" CC="mpiicc" CXX="mpiicpc" '
 
-# BLAS/Lapack
-configopts += '--with-linalg-flavor="openblas"  LINALG_LIBS="-L${EBROOTOPENBLAS}/lib -lopenblas" '
+# BLAS/Lapack from MKL
+configopts += '--with-linalg-flavor=mkl '
 
-# FFTW3 support
-configopts += '--with-fft-flavor=fftw3 FFTW3_LIBS="-L${EBROOTFFTW} -lfftw3f -lfftw3" '
+# FFTW from MKL
+configopts += '--with-fft-flavor=dfti '
 
 # libxc support
 configopts += '--with-libxc=${EBROOTLIBXC} '
@@ -43,9 +44,6 @@ configopts += '--with-libxc=${EBROOTLIBXC} '
 configopts += '--with-netcdf="${EBROOTNETCDF}" '
 configopts += '--with-netcdf-fortran="${EBROOTNETCDFMINFORTRAN}" '
 configopts += '--with-hdf5="${EBROOTHDF5}" '
-
-# make sure --free-line-length-none is added to FCFLAGS
-configopts += 'FCFLAGS="${FCFLAGS} --free-line-length-none" '
 
 # `make check` is just executing some basic unit tests.
 # Also running 'make tests_v1' to have some basic validation
