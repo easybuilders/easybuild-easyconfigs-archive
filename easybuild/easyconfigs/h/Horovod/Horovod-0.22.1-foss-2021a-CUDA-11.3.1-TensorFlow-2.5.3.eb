@@ -2,7 +2,7 @@ easyblock = 'PythonBundle'
 
 name = 'Horovod'
 version = '0.22.1'
-local_tf_version = '2.6.0'
+local_tf_version = '2.5.3'
 local_cuda_suffix = '-CUDA-%(cudaver)s'
 versionsuffix = local_cuda_suffix + '-TensorFlow-%s' % local_tf_version
 
@@ -13,7 +13,6 @@ toolchain = {'name': 'foss', 'version': '2021a'}
 
 builddependencies = [
     ('CMake', '3.20.1'),
-    ('flatbuffers', '2.0.0'),
 ]
 dependencies = [
     ('CUDA', '11.3.1', '', SYSTEM),

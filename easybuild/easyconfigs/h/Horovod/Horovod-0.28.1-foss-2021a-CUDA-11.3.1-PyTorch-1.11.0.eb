@@ -1,8 +1,8 @@
 easyblock = 'PythonBundle'
 
 name = 'Horovod'
-version = '0.25.0'
-local_pt_version = '1.10.0'
+version = '0.28.1'
+local_pt_version = '1.11.0'
 local_cuda_suffix = '-CUDA-%(cudaver)s'
 versionsuffix = local_cuda_suffix + '-PyTorch-%s' % local_pt_version
 
@@ -30,11 +30,11 @@ preinstallopts = 'HOROVOD_WITH_MPI=1 HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_GPU_BROA
 preinstallopts += 'HOROVOD_WITHOUT_TENSORFLOW=1 HOROVOD_WITH_PYTORCH=1 HOROVOD_WITHOUT_MXNET=1 '
 
 exts_list = [
-    ('cloudpickle', '2.1.0', {
-        'checksums': ['bb233e876a58491d9590a676f93c7a5473a08f747d5ab9df7f9ce564b3e7938e'],
+    ('cloudpickle', '2.2.1', {
+        'checksums': ['d89684b8de9e34a2a43b3460fbca07d09d6e25ce858df4d5a44240403b6178f5'],
     }),
     ('horovod', version, {
-        'checksums': ['bc9fed57b67c1b55259671d2439cdbc93aa897ea6e5da459e11e7556972b2355'],
+        'checksums': ['92a43f5a94c43907a56805bad15f19700c62ffc83b7ca483f9e104e229f67ef0'],
     }),
 ]
 
