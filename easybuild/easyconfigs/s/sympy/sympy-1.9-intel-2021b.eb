@@ -7,7 +7,7 @@ description = """SymPy is a Python library for symbolic mathematics. It aims to
  simple as possible in order to be comprehensible and easily extensible. SymPy
  is written entirely in Python and does not require any external libraries."""
 
-toolchain = {'name': 'foss', 'version': '2021b'}
+toolchain = {'name': 'intel', 'version': '2021b'}
 
 sources = [SOURCE_TAR_GZ]
 checksums = ['c7a880e229df96759f955d4f3970d4cabce79f60f5b18830c08b90ce77cd5fdc']
